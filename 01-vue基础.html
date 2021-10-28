@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- vue提供的cdn地址 -->
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // 创建Vue实例
+  Vue.createApp({
+    data() {
+      return {
+        content:1
+      }
+    },
+    // mounted:当页面加载完成执行
+    mounted() {
+      setInterval(() => {
+        this.content += 1  // this.$data.content += 1的简写
+      }, 1000)
+    },
+    template:'<div>{{content}}</div>'
+  }).mount('#root')
+  // template：在root中用该模版
+  // mount('#root'):在id为root的div上面使用
+</script>
+</html>
