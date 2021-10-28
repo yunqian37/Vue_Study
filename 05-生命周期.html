@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="root">
+    <!-- 当creatApp中没有template时会读取root的子节点,如果存在template则不会渲染 -->
+    <div>{{message}}</div>
+  </div>
+</body>
+<script>
+  // 生命周期函数：在某一时刻会自动执行的函数
+  const app = Vue.createApp({
+    data() {
+      return {
+        message: 'hello world',
+        msg: '你好'
+      }
+    },
+    // 在实例生成之前会自动执行的函数
+    beforeCreate() {
+      console.log('beforeCreate')
+    },
+    // 在实例生成之后会自动执行的函数
+    created() {
+      console.log('created')
+    },
+    // 在组件内容被渲染到页面之前自动执行的函数
+    beforeMount() {
+      console.log(document.getElementById('root').innerHTML, 'beforeMount')
+    },
+    // 在组件内容被渲染到页面之后自动执行的函数
+    mounted() {
+      console.log(document.getElementById('root').innerHTML, 'mounted')
+    },
+    // 当数据发生变化时会立即自动执行的函数 控制台执行vm.$data.message = '122'会触发
+    beforeUpdate() {
+      console.log(document.getElementById('root').innerHTML, 'beforeUpdate')
+    },
+    // 当数据发生变化，页面重新渲染后会自动执行的函数
+    updated() {
+      console.log(document.getElementById('root').innerHTML, 'updated')
+    },
+    // 当Vue应用失效时自动执行的函数 控制台执行app.unmount()触发
+    beforeMount() {
+      console.log(document.getElementById('root').innerHTML, 'beforeMount')
+    },
+    // 当Vue应用失效时，且dom完全销毁之后自动执行的函数
+    unmounted() {
+      console.log(document.getElementById('root').innerHTML, 'unmounted')
+    },
+    template: '<div>{{msg}}</div>'
+  })
+  const vm = app.mount('#root')
+</script>
+</html>

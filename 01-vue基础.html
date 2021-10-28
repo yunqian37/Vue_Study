@@ -12,7 +12,14 @@
   <div id="root"></div>
 </body>
 <script>
-  // 创建Vue实例
+  /**
+   * mvvm设计模式：
+   *  m：model数据
+   *  v：view视图
+   *  vm：视图数据链接层
+  */
+ 
+  // createApp 表示创建一个Vue应用，传人的参数表示这个应用最外层的组件应该如何展示
   Vue.createApp({
     data() {
       return {
