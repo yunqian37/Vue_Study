@@ -10,4 +10,15 @@
 <body>
   <div id="root"></div>
 </body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        message: 'hello world',
+      }
+    },
+    template: '<div>{{message}}</div>'
+  })
+  const vm = app.mount('#root')
+</script>
 </html>
