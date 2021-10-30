@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .red {
+      color: red;
+    }
+    .pink {
+      color: pink;
+    }
+    .fontSize {
+      font-size: 30px;
+    }
+    .fontWeight {
+      font-weight: 700;
+    }
+  </style>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        message: 'hello world',
+        classString:'red',
+        classObject: {red: true, fontSize: true},
+        classArray: ['red', 'fontSize', {fontWeight: true}]
+      }
+    },
+    template: `
+      <div :class="classArray">
+        {{message}}
+        <demo class="pink />
+      </div>
+    `
+  })
+  app.component('demo', {
+    template: `
+      <div :class="$attrs.class">one</div>
+      <div :class="$attrs.class">two</div>
+    `
+  })
+  const vm = app.mount('#root')
+</script>
+</html>
