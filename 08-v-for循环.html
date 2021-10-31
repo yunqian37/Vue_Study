@@ -14,11 +14,25 @@
   const app = Vue.createApp({
     data() {
       return {
-        message: 'hello world',
+        listArray: ['js', 'css', 'html'],
+        listObject:{
+          'name': 'momo',
+          'age': 7
+        }
       }
     },
+    // template标签:v-for优化
     template: `
-      <div>{{message}}</div>
+      <div>
+        <template
+          v-for="(item, index) in listArray"
+          :key="index">
+          <div>{{item}}</div>
+        </template>
+        <div v-for="(value, key, index) in listObject">
+          {{value}} => {{key}}
+        </div>
+      </div>
     `
   })
   const vm = app.mount('#root')
