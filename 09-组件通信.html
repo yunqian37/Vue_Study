@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        count: 1,
+      }
+    },
+    methods: {
+      handleAdd(param1) {
+        this.count += param1
+      }
+    },
+    template: `
+      <div>
+        <counter :count="count" @add="handleAdd"></counter>
+      </div>
+    `
+  })
+  app.component('counter', {
+    props: ['count'],
+    // emits: ['add'], // emits: 该组件会向外部传递事件的集合，方便维护
+    emits: {
+      add: (count) => { // 校验传递的数据是否符合校验
+        if (count > 0) {
+          return true
+        }
+        return false
+      }
+    },
+    methods: {
+      handleClick() {
+        this.$emit('add', this.count + 1)
+      }
+    },
+    template: `
+      <div @click="handleClick">{{count}}</div>
+    `
+  })
+  const vm = app.mount('#root')
+</script>
+</html>
