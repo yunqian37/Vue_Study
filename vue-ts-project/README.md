@@ -1,4 +1,4 @@
-# jingdong
+# vue-ts-project
 
 ## Project setup
 ```
